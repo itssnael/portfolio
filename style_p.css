@@ -1,0 +1,341 @@
+@font-face {
+    font-family: 'Inclusive';
+    src: url('fonts/InclusiveSans-VariableFont_wght.ttf') format('truetype');
+}
+
+/* --- RESET ET BASE --- */
+
+/* Cache la barre de scroll pour Chrome, Safari et Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cache la barre de scroll pour Firefox et IE/Edge */
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #F9F9F9;
+}
+
+/* --- CONFIGURATION "PURE SLIDE" (PAGE FIXE) --- */
+body, html {
+    /* On empêche la page de scroller verticalement */
+    overflow: hidden; 
+    /* La page fait pile la taille de l'écran */
+    height: 100vh; 
+    width: 100%;
+}
+
+body {
+    font-family: 'Inclusive', sans-serif;
+    background-color: rgb(15, 15, 15);
+    padding-top: 80px; /* Espace pour la navbar fixe */
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Empile Titre, Lien et Slider */
+    overflow: hidden; /* Sécurité */
+}
+
+a {
+    text-decoration: none;
+}
+
+/* --- BARRE DE NAVIGATION --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 70px;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* --- TITRES ET LIENS DE LA PAGE PROJET --- */
+
+#stickers {
+  display: flex;
+  justify-content: center;
+    padding-bottom: 20px;
+}
+
+/* 2. L'image Sticker */
+.sticker-img {
+    /* --- TAILLE ET RESET --- */
+    width: 450px; /* Le !important écrase la règle "width: 70%" du #about img */
+    height: auto;
+    display: block;
+    padding: 0 !important; /* On annule tout padding parasite */
+    /* --- AJUSTEMENT VISUEL MANUEL --- */
+    /* Modifie cette valeur pour monter/descendre l'image */
+    /* Valeur négative (-10px) = l'image remonte */
+    /* Valeur positive (10px) = l'image descend */
+    transform: translateY(-10px); 
+    cursor: pointer;
+}
+
+/* 3. Le réglage spécifique de l'image Touch */
+.sticker-touch {
+    width: 35% !important; /* Taille personnalisée */
+    height: fit-content;
+    display: block;
+}
+
+.sticker-touch2 {
+    width: 65% !important; /* Taille personnalisée */
+    height: fit-content;
+    display: block;
+}
+
+/* Nouveau style pour le titre H1 */
+main h1 {
+    padding-bottom: 1rem;
+    color: #FF83D1;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+}
+
+/* Ajustement du lien retour */
+.back-link {
+    width: fit-content;
+    display: inline-block;
+    margin: 0 0 1rem 8rem; /* Marges réduites pour gagner de la place */
+    color: #898989;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #FF83D1;
+}
+
+/* --- STYLE INTERNE DES CARTES PROJETS --- */
+
+.project-image img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    object-fit: cover;
+}
+
+.project-info h3 {
+    color: #FF83D1;
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    font-size: 2rem;
+}
+
+.project-info h3:first-child {
+    margin-top: 0;
+}
+
+.project-info p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #E0E0E0;
+    text-align: justify;
+}
+
+.project-info a {
+    color: #FF83D1;
+}
+
+/* --- STRUCTURE DU SLIDER HORIZONTAL (MOLETTE) --- */
+
+/* 1. Le conteneur global du slider */
+#projects-scroll-container {
+    flex: 1; 
+    width: 100%;
+    position: relative; 
+    overflow: hidden;
+    
+    display: flex; 
+    /* MODIFICATION ICI : On remplace 'center' par 'flex-start' */
+    align-items: flex-start; 
+    
+    /* On ajoute un petit padding pour que ça ne colle pas littéralement au lien */
+    padding-top: 2vh; /* Ajustez ce chiffre pour réduire/agrandir l'écart (ex: 10px ou 2vh) */
+}
+
+/* 2. Le wrapper interne */
+.projects-sticky-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    /* MODIFICATION ICI AUSSI : On remplace 'center' par 'flex-start' */
+    align-items: flex-start; 
+}
+
+/* 3. Le rail qui bouge (transformé par le JS) */
+.projects-track {
+    display: flex;
+    /* MODIFICATION : On met 100% pour éviter de couper le contenu en haut/bas */
+    height: 100%; 
+    
+    /* MODIFICATION : On aligne en haut pour suivre le conteneur */
+    align-items: flex-start; 
+    
+    width: max-content;
+    will-change: transform;
+    padding-left: 7rem;
+}
+
+/* --- LES CARTES (SLIDES) --- */
+.project-details {
+    width: 85vw; /* Largeur d'une diapositive */
+    height: fit-content; /* Prend toute la hauteur du rail (80% de l'écran) */
+    flex-shrink: 0;
+    margin-right: 5vw; /* Espace entre les cartes */
+    
+    /* Flexbox interne */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    padding: 0 2rem; /* Padding horizontal seulement */
+}
+
+/* Colonne Image */
+.project-image {
+    width: 50%;
+    position: relative;
+    top: auto;
+}
+
+/* Colonne Texte */
+.project-info {
+    width: 45%;
+    /* Scroll interne si le texte est trop long */
+    max-height: 100%; 
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* Scrollbar interne personnalisée pour le texte */
+.project-info::-webkit-scrollbar {
+    width: 5px;
+}
+.project-info::-webkit-scrollbar-thumb {
+    background-color: #FF83D1;
+    border-radius: 10px;
+}
+
+/* --- STYLE VIDÉO --- */
+.project-image video {
+    width: 100%;
+    height: auto; /* Garde les proportions */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Même ombre */
+    object-fit: cover; /* Remplit bien l'espace */
+    display: block; /* Évite les petits espaces blancs en dessous */
+    cursor: pointer; /* Indique qu'on peut interagir */
+    transition: transform 0.3s ease;
+}
+
+footer {
+    /* Le footer est caché par défaut dans ce mode "Pure Slide", 
+       sauf si vous l'intégrez dans le slider comme dernière slide */
+    display: none; 
+}
+
+
+/* --- VERSION MOBILE / TABLETTE (Retour au scroll vertical classique) --- */
+@media (max-width: 900px) {
+    
+    /* 1. On réactive le scroll de la page */
+    body, html {
+        overflow: auto;
+        height: auto;
+    }
+
+    main {
+        height: auto;
+        display: block;
+        padding-top: 80px;
+    }
+
+    /* 2. On réactive le footer */
+    footer {
+        display: block;
+        text-align: center;
+        padding: 1rem 3rem;
+    }
+
+    /* 3. Ajustements Titres et Liens */
+    main h1 {
+        padding-left: 2rem;
+        font-size: 2rem;
+    }
+    
+    .back-link {
+        margin: 0 0 2rem 2rem;
+    }
+
+    /* 4. On casse la structure Slider pour empiler les projets */
+    #projects-scroll-container {
+        flex: 1; 
+    width: 100%;
+    position: relative; 
+    overflow: hidden;
+    
+    display: flex; 
+    align-items: flex-start; 
+    
+    /* MODIFICATION : On passe de 2vh à 60px pour bien dégager le titre */
+    padding-top: 60px;
+    }
+
+    .projects-sticky-wrapper {
+        height: auto;
+        display: block;
+    }
+
+    .projects-track {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        transform: none !important; /* Annule le JS */
+        padding-left: 0;
+    }
+
+    /* 5. Style des cartes sur mobile */
+    .project-details {
+        width: 100%;
+        height: auto;
+        margin-bottom: 4rem;
+        flex-direction: column;
+        padding: 0 2rem;
+    }
+
+    .project-image, 
+    .project-info {
+        width: 100%;
+    }
+
+    .project-image {
+        margin-bottom: 2rem;
+    }
+
+    .project-info {
+        max-height: none;
+        overflow: visible;
+    }
+}
