@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ALB - graphic</title>
-    <meta name="description" content="Projet en developpement web d'Alexandra Le Bozec développeuse web en troisième année d'un BUT MMI">
+    <title>Graphic Design & Visual Identity Portfolio | Alexandra Le Bozec</title>
+    <meta name="description" content="Discover my graphic design work: Tyla concert posters, Vanier College Yearbook layout, So Youn Lee inspired Art Book, and RAGE brand visual identity.">
     <meta name="author" content="Alexandra Le Bozec">
-
     <link rel="icon" type="image/x-icon" href="">
-
     <link rel="stylesheet" href="style_p.css">
 </head>
 
 <body>
 
     <header>
-        <nav class="navbar">
-        <div class="brand-name"><a href="index.html"><span>ALB</span></a></div>
+        <nav class="navbar" role="navigation">
+            <div class="brand-name">
+                <a href="index.html"><span>ALB</span></a>
+            </div>
+
+            <ul class="side-menu">
+                <li><a href="index.html#acceuil"><span>HOME</span></a></li>
+                <li><a href="index.html#about"><span>ABOUT</span></a></li>
+                <li><a href="index.html#projets"><span>PROJECTS</span></a></li>
+                <li><a href="index.html#cont"><span>CONTACT</span></a></li>
+            </ul>
+
+            <button class="hamburger" aria-label="Open menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </nav>
     </header>
 
@@ -27,11 +38,12 @@
              <img 
         src="photo/graphic.png" 
         data-hover="photo/graphic2.png" 
-        alt="audiovisual" 
+        alt="Graphic Design Project Sticker" 
         class="sticker-img sticker-touch"
         >
         </div>
-    <a href="index.html#projets" class="back-link">← Retour en arrière</a>
+        
+    <a href="index.html#projets" class="back-link">← Back to projects</a>
 
     <div id="projects-scroll-container">
         
@@ -40,14 +52,17 @@
             <div class="projects-track">
 
                 <section class="project-details">
-                    <div class="project-image">
-                        <h1>Concert poster</h1>
-                        <img src="photo/MT.png" alt="projet1">
+                    <div class="project-image hidden-anim">
+                        <h2>Tyla - Concert Poster</h2>
+                        
+                        <div class="img-wrapper2">
+                            <img src="photo/MT.png" alt="Tyla Concert Poster Design" class="no-zoom">
+                        </div>
+                        
                     </div>
-                    <div class="project-info">
+                    <div class="project-info hidden-anim delay-1">
                         <h3>About the project</h3>
-                        <p>This project was carried out during my first-year MMI internship at LIFE TV under
-the supervision and guidance of my internship mentor. The objective was to create a
+                        <p>Created during my internship at LIFE TV, the objective of this promotional poster was to create a
 poster inspired by one or more existing posters, analyzing their design process and
 adapting them to my own style. I also had to adapt the poster into an Instagram story
 and a Facebook post.</p>
@@ -60,13 +75,20 @@ formats for social media.</p>
                 </section>
 
                 <section class="project-details">
-                    <div class="project-image">
-                        <h1>Brand Guide</h1>
-                        <img src="photo/mockup_site.png" alt="projet1">
+                    <div class="project-image hidden-anim">
+                        <h2>Vanier College Yearbook</h2>
+                        
+                        <div class="img-wrapper">
+                            <video autoplay muted loop playsinline class="video-hover">
+                                <source src="photo/bg.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
                     </div>
-                    <div class="project-info">
+                    <div class="project-info hidden-anim delay-1">
                         <h3>About the project</h3>
-                        <p>This project is a brand guide based on the theme of Old Hollywood for the design
+                        <p>It is a brand guide based on the theme of Old Hollywood for the design
 of Vanier College’s 2025 Yearbook.</p>
                         <h3>The Process</h3>
                         <p>My team and I first defined the theme and style we wanted for our concept, then
@@ -77,17 +99,18 @@ pages in the Yearbook.</p>
                 </section>
 
                 <section class="project-details">
-                    <div class="project-image">
-                        <h1>Graphic Book</h1>
-                        <video autoplay muted loop playsinline class="video-hover">
-        <source src="photo/mockup_book.mp4" type="video/mp4">
-        Votre navigateur ne supporte pas la vidéo.
-    </video>
+                    <div class="project-image hidden-anim">
+                        <h2>Art Book - InDesign</h2>
+                        <div class="img-wrapper">
+                            <a href="bookv4.pdf" target="_blank"><video autoplay muted loop playsinline class="video-hover">
+                                <source src="photo/mockup_book.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video></a>
+                        </div>
                     </div>
-                    <div class="project-info">
+                    <div class="project-info hidden-anim delay-1">
                         <h3>About the project</h3>
-                        <p>This project is a graphic book inspired by the South Korean artist So Youn Lee,
-showcasing writing exercises completed as part of my MMI studies.</p>
+                        <p>Inspired by the South Korean artist So Youn Lee, this graphic book showcasing writing exercises completed as part of my MMI studies.</p>
                         <h3>The Process</h3>
                         <p>To achieve this, I first selected the artist who inspired me the most, as well as the
 texts I wanted to illustrate. I then analyzed So Youn Lee’s works to determine
@@ -97,34 +120,25 @@ created <a href="bookv4.pdf" target="_blank">this book</a> in InDesign.</p>
                 </section>
 
                 <section class="project-details">
-                    <div class="project-image">
-                        <h1>Rage</h1>
-                        <img src="photo/mockup_site.png" alt="projet1">
+                    <div class="project-image hidden-anim">
+                        <h2>Rage - Visual identity</h2>
+                        
+                        <div class="img-wrapper">
+                            <video autoplay muted loop playsinline class="video-hover">
+                                <source src="photo/mockup rage.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
                     </div>
-                    <div class="project-info">
+                    <div class="project-info hidden-anim delay-1">
                         <h3>About the project</h3>
-                        <p>This project is a visual identity creation. I designed RAGE, an innovative brand aiming to establish itself
-in the boxing equipment market.</p>
+                        <p>RAGE is an innovative brand aiming to establish itself in the boxing equipment market.</p>
                         <h3>The Process</h3>
                         <p>To achieve this, I first defined my brand’s activity, analyzed competitors, and determined its philosophy.
 Then, from the original photo, I hand-drew four variations of the tiger’s head, scanned the final sketch, and vectorized it using
 Illustrator. Once this step was completed, I selected a typography for the logo, tested several options,
 and finalized the vectorization.</p>
-                    </div>
-                </section>
-
-                <section class="project-details">
-                    <div class="project-image">
-                        <h1>3D projects</h1>
-                        <img src="photo/mockup_site.png" alt="projet1">
-                    </div>
-                    <div class="project-info">
-                        <h3>About the project</h3>
-                        <p>These creations are the result of 3D projects carried out in Blender to familiarize myself with the tool.
-
-I created a perfume packshot for which I wanted to create an intriguing, yet bewitching and sensual atmosphere, like the scent of a flower. I played with colors and lighting to achieve this effect.
-
-I also modeled a rocket to improve my skills with the various tools Blender offers.</p>
                     </div>
                 </section>
 
