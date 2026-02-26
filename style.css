@@ -1,23 +1,15 @@
 @font-face {
     font-family: 'Inclusive';
     src: url('fonts/InclusiveSans-VariableFont_wght.ttf') format('truetype');
-    /* Assure-toi que le fichier est bien dans le dossier 'fonts' */
-}
-/* --- RESET ET BASE --- */
-/* Cache la barre de scroll pour Chrome, Safari et Opera */
-body::-webkit-scrollbar {
-    display: none;
-    
 }
 
-section, #cont { 
-    scroll-margin-top: 100px; /* 70px de navbar + 30px d'espace visuel */
-}
-
-/* Cache la barre de scroll pour Firefox et IE/Edge */
+/* =========================================
+   1. RESET ET BASE (Styles globaux)
+========================================= */
+body::-webkit-scrollbar { display: none; }
 html {
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     scroll-behavior: smooth;
 }
 
@@ -31,27 +23,23 @@ html {
 body {
     font-family: 'Inclusive', sans-serif;
     background-color: rgb(15, 15, 15);
-    padding-top: 80px; /* Pour ne pas cacher le contenu sous la nav fixe */
+    padding-top: 80px; 
 }
 
-h2{
-    padding-right: 40px;
-    font-size: 3rem;
-}
+h2 { font-size: 3rem; }
+h3 { font-size: 1.5rem; }
+a { text-decoration: none; }
 
-h3{
-    font-size: 2.4rem;
-}
+section, #cont { scroll-margin-top: 100px; }
 
-/* --- BARRE DE NAVIGATION --- */
+/* =========================================
+   2. BARRE DE NAVIGATION & MENU
+========================================= */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Nom à gauche, Burger à droite */
+    justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
-   /* background-color: #2F2F2F;*/
-    /*backdrop-filter: blur(10px);*/
-    /*backdrop-filter: invert(80%);*/
     position: fixed;
     top: 0;
     width: 100%;
@@ -64,11 +52,16 @@ h3{
     font-weight: bold;
 }
 
-/* --- BOUTON HAMBURGER --- */
 .hamburger {
     display: block;
     cursor: pointer;
-    z-index: 1001; /* Au-dessus du menu */
+    z-index: 1001;
+}
+
+button.hamburger {
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .bar {
@@ -76,417 +69,647 @@ h3{
     width: 25px;
     height: 3px;
     margin: 5px auto;
-    -webkit-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
     background-color: #F9F9F9;
     border-radius: 50px;
+    transition: all 0.4s ease-in-out;
 }
 
-/* --- ANIMATION EN CROIX --- */
-.hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-}
+.hamburger.active .bar:nth-child(2) { opacity: 0; }
+.hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-.hamburger.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.hamburger.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-
-/* --- MENU LATÉRAL (SIDE MENU) --- */
+/* =========================================
+   MENU (ORDINATEUR & TABLETTE - Horizontal)
+========================================= */
 .side-menu {
-    position: fixed;
-    top: 0;
-    right: 0; /* On ancre le menu à droite */
-    height: 100vh;
-    width: 250px;
-    background-color: #FF83D1;
+    position: absolute;
+    right: 100px; 
     display: flex;
-    flex-direction: column;
-    place-content: center;
-    align-items: center;
+    flex-direction: row; 
+    gap: 2.5rem; 
     list-style-type: none;
-    z-index: 999;
-    /*box-shadow: -2px 0 5px rgba(0,0,0,0.5);*/
-
-    /* --- LE SECRET DE LA FLUIDITÉ EST ICI --- */
-    
-    /* 1. Au lieu de cacher avec 'right: -100%', on déplace le menu 
-       de 100% de sa propre largeur vers la droite */
-    transform: translateX(100%);
-    
-    /* 2. On anime la propriété 'transform' qui est gérée par la carte graphique */
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0; 
+    visibility: hidden; 
+    transform: translateX(20px); 
+    transition: all 0.4s ease-in-out;
 }
 
 .side-menu.active {
-    /* Quand actif, on annule le déplacement (il revient à sa place) */
+    opacity: 1;
+    visibility: visible;
     transform: translateX(0);
 }
 
-
-/* --- Modifications sur le lien parent --- */
 .side-menu a {
-    text-decoration: none;
-    color: #F9F9F9;
     font-size: 1.2rem;
     display: block;
-    padding: 2rem;
-    transition: 0.3s;
+    padding: 0.5rem;
     font-weight: bold;
-    /* On retire le 'position: relative' d'ici s'il y était */
 }
 
-/* --- CONFIGURATION COMMUNE POUR L'ANIMATION DES LIENS --- */
-
-/* 1. On cible les SPANS dans : le menu, les projets et le contact */
-.side-menu a span,
-#projets a span,
-#cont a span {
-    position: relative; /* Indispensable pour positionner la barre */
-    padding-bottom: 5px; /* Un peu d'espace entre le texte et la barre */
+.side-menu a span {
+    color: #898989; 
+    transition: color 0.3s ease;
 }
 
-/* 2. La barre avant l'animation (invisible) */
-.side-menu a span::before,
-#projets a span::before{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%; /* Départ à 0 */
-    height: 3px; /* Épaisseur */
-    background-color: #F9F9F9; /* Couleur de la ligne */
-    border-radius: 50px; /* Coins arrondis */
-    transition: width 0.3s ease-in-out; /* Vitesse de l'animation */
+.side-menu a:hover span { color: #F9F9F9; }
+
+/* =========================================
+   3. SECTION ACCUEIL (Hero)
+========================================= */
+#acceuil {
+    width: 100%;
+    height: 120vh;
+    margin-top: -80px;
+    overflow: hidden;
+    background-image: url('photo/accueil.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#cont a span::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%; /* Départ à 0 */
-    height: 2px; /* Épaisseur */
-    background-color: #F9F9F9; /* Couleur de la ligne */
-    border-radius: 50px; /* Coins arrondis */
-    transition: width 0.3s ease-in-out; /* Vitesse de l'animation */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px; 
+    transform: translateY(-10vh);
 }
 
-/* 3. L'animation au survol */
-.side-menu a:hover span::before,
-#projets a:hover span::before,
-#cont a:hover span::before {
-    width: 100%; /* Arrivée à 100% de la taille du texte */
+.hero-title {
+    font-size: clamp(6rem, 16vw, 15rem); 
+    font-weight: 900;
+    color: #111; 
+    line-height: 0.8; 
+    letter-spacing: 2px;
 }
 
-#about{
+.forlio-sticker {
+    width: clamp(280px, 50vw, 700px); 
+    height: auto;
+    display: block;
+    position: relative; 
+    z-index: 2; 
+    margin-top: -4vw; 
+}
+
+.hero-subtitle {
+    color: #111;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 5vh; 
+    text-transform: uppercase;
+}
+
+/* =========================================
+   4. SECTION ABOUT
+========================================= */
+#about {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(4, auto);
     gap: 20px;
     padding: 2rem 4rem;
-    margin-bottom: 4rem;
+    margin: 8rem 0 4rem 0;
 }
 
 #about h2 {
     grid-column: 5 / span 9;
     grid-row: 1 / 2;
-    
     display: flex;
-    align-items: center; /* Centre mathématiquement */
+    align-items: center;
     flex-wrap: wrap;
 }
 
-/* 2. L'image Sticker */
-.sticker-img {
-    /* --- TAILLE ET RESET --- */
-    width: 400px; /* Le !important écrase la règle "width: 70%" du #about img */
-    height: auto;
-    display: block;
-    padding: 0 !important; /* On annule tout padding parasite */
-    /* --- AJUSTEMENT VISUEL MANUEL --- */
-    /* Modifie cette valeur pour monter/descendre l'image */
-    /* Valeur négative (-10px) = l'image remonte */
-    /* Valeur positive (10px) = l'image descend */
-    transform: translateY(-10px); 
-    cursor: pointer;
-}
-
-#je{
+#about p {
+    font-size: 1.05rem;
     grid-column: 5 / span 9;
     grid-row: 2 / 3;
+    max-width: 580px; 
+    padding-right: 0; 
 }
 
-#touch{
-    grid-column: 1 / span 2;
-    grid-row: 4 / 5;
-}
-
-#cv {
-    /* POSITIONNEMENT DANS LA GRILLE (Tu l'avais déjà, c'est bon) */
-    grid-column: 4 / span 6;
-    grid-row: 4 / 5;
-    /* TAILLE ET ALIGNEMENT */
-    width: 220px !important; /* On écrase les 400px pour mettre une taille raisonnable */
-    height: auto;
-    /* Pour l'aligner verticalement avec le texte "Get in touch" à côté */
-    align-self: center; 
-    /* Optionnel : Si tu veux le décaler un peu */
-    margin-left: 0; 
-    /* On s'assure qu'il garde les propriétés du curseur */
-}
-
-/* 1. Le placement du H3 dans la grille (Grid) */
-#touch {
-    grid-column: 1 / span 3;
-    grid-row: 4 / 5;
-    align-self: center; /* Centre le bloc verticalement dans sa case */
-}
-
-/* 2. L'alignement du texte et de l'image (Flexbox) */
-.link-touch {
-    display: flex; /* C'est ça qui met "Get in" et l'image côte à côte */
-    align-items: center; /* Centre verticalement le texte par rapport à l'image */
-    text-decoration: none; /* Enlève le soulignement classique du lien */
-    color: #F9F9F9;
-}
-
-/* 3. Le réglage spécifique de l'image Touch */
-.sticker-touch {
-    width: 220px !important; /* Taille personnalisée */
-    height: auto;
-    display: block;
-    margin: 0;
-    
-    /* Ajustement manuel pour l'alignement visuel (comme pour le titre) */
-    transform: translateY(-10px); /* Modifie ce chiffre pour monter/descendre l'image */
-}
-
-
-#about p{
-    padding-right: 40px;
-    grid-column: 5 / span 9;
-    grid-row: 3 / 4;
-}
-
-#moi{
+#moi {
     padding-left: 40px;
     width: 70%;
     grid-column: 1 / span 5;
     grid-row: 1 / span 3;
 }
 
-/* --- SECTION PROJETS (HORIZONTAL SCROLL) --- */
+.sticker-img {
+    width: 400px !important;
+    height: auto;
+    display: block;
+    transform: translateY(-10px); 
+    cursor: pointer;
+}
 
+.stack-container {
+    grid-column: 5 / span 9;
+    grid-row: 3 / 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+#skills-logos {
+    list-style: none; 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.stack-item {
+    background-color: #222;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px; 
+    height: 70px; 
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.stack-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+    filter: grayscale(0%); 
+    opacity: 1; 
+}
+
+.stack-footer {
+    grid-column: 5 / span 9; 
+    grid-row: 4 / 5;         
+    display: flex;
+    align-items: center;     
+    gap: 15px;               
+    flex-wrap: wrap;
+}
+
+.stack-footer p {
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+    color: #898989; 
+    max-width: fit-content; 
+}
+
+.cv-wrapper {
+    display: flex;
+    align-items: center;
+    white-space: nowrap; 
+}
+
+.cta-text {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #F9F9F9;
+}
+
+.sticker-cv-mini {
+    width: 120px; 
+    transform: translateY(0px); 
+    margin: 0; 
+}
+
+#about .stack-footer p {
+    grid-column: auto;
+    grid-row: auto;
+    padding-right: 0;
+    font-size: 1.2rem;
+    color: #ff83d1;
+}
+
+.cv-line {
+    display: flex;
+    align-items: center;
+}
+
+.cv-line h3 { font-size: 2.4rem; }
+
+#cv {
+    width: 130px !important; 
+    height: auto;
+    display: block;
+    transform: translateY(0); 
+    transition: transform 0.3s ease;
+}
+
+/* =========================================
+   5. SECTION PROJETS (Scroll Horizontal)
+========================================= */
 #projets {
-    /* On donne une grande hauteur pour créer de l'espace de scroll.
-       Plus c'est grand, plus le défilement sera lent et fluide. */
-    height: 300vh; 
+    height: 400vh; 
     position: relative;
     background-color: #FF83D1;
 }
 
 .sticky-wrapper {
-    /* C'est l'élément qui reste visible à l'écran */
     position: sticky;
     top: 0;
-    height: 100vh; /* Prend tout l'écran */
+    height: 100vh; 
     width: 100%;
-    overflow: hidden; /* Cache ce qui dépasse à droite */
-    
-    /* On garde ton Grid layout pour placer le titre et le rail */
+    overflow: hidden; 
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: 150px 1fr; /* 150px pour le titre, le reste pour les images */
+    grid-template-rows: repeat(2, auto);
     padding: 0 5rem;
 }
 
-/* --- PARTIE HAUTE (Titres) --- */
 .projets-header {
     grid-column: 1 / span 9;
     grid-row: 1 / 2;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    padding-bottom: 20px;
-    z-index: 2; /* Reste au dessus des images */
+    align-items: center;
+    z-index: 2;
 }
 
 .projets-header h2 {
-    font-size: 3rem;
+    font-size: 4rem;
     padding-left: 40px;
 }
 
-/* --- LE RAIL D'IMAGES --- */
 .horizontal-scroll-track {
     grid-column: 1 / span 9;
     grid-row: 2 / 3;
-    
     display: flex;
-    align-items: center;
-    
-    /* 1. GAP RESPONSIVE : 
-       On met 5vw (5% de la largeur de l'écran) au lieu de 50px. 
-       L'espace grandit avec l'écran. */
-    gap: 5vw; 
-    
-    /* 2. DÉMARRAGE PLUS À DROITE :
-       On augmente le padding-left. 
-       30vw signifie que la première image commencera à 30% de la largeur de l'écran 
-       (presque au tiers droit), laissant un grand espace vide au début. */
+    align-items: flex-start;
+    gap: 8vw; 
     padding-left: 35vw; 
-    
     width: max-content; 
     will-change: transform; 
 }
 
-/* --- LES IMAGES --- */
 .projet-item {
-    /* 3. IMAGES PLUS GRANDES ET RESPONSIVES :
-       Avant c'était 600px fixe.
-       Maintenant, elles font 45% de la largeur de l'écran (45vw).
-       On ajoute un min-width pour qu'elles ne soient pas trop petites sur tablette. */
     width: 45vw; 
-    min-width: 650px; /* Sécurité pour garder une bonne taille */
-    
-    flex-shrink: 0; 
+    min-width: 650px; 
+    flex-shrink: 0;
+    overflow: hidden; 
+    border-radius: 6px;
+    box-shadow: 10px 10px 40px rgba(0,0,0,0.15); 
 }
 
 .projet-item img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    /* Petit effet d'ombre porté pour détacher les images du fond */
-    box-shadow: 10px 10px 40px rgba(0,0,0,0.15); 
-    border-radius: 4px; /* Optionnel : coins légèrement arrondis */
+    filter: grayscale(100%);
+    transform: scale(1);
+    transition: filter 0.5s ease, transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
-/* --- MOBILE --- */
-/* --- MOBILE (Tablettes et Téléphones) --- */
-@media (max-width: 768px) {
-    
-    /* 1. On garde le container Sticky actif */
-    #projets {
-        height: 300vh; /* On garde la longueur de scroll */
-    }
-
-    .sticky-wrapper {
-        position: sticky; /* Reste collé */
-        height: 100vh;
-        display: grid; /* On garde le grid layout */
-        padding: 0 1rem; /* On réduit les marges sur les côtés */
-        /* Ajustement pour que le titre ne soit pas collé tout en haut sur mobile */
-        grid-template-rows: 100px 1fr; 
-    }
-
-    .projets-header h2 {
-        font-size: 2rem; /* Titre plus petit sur mobile */
-        padding-left: 0;
-    }
-
-    /* 2. On garde le rail horizontal */
-    .horizontal-scroll-track {
-        flex-direction: row; /* IMPORTANT : On force la ligne horizontale */
-        transform: none; /* Le JS va s'occuper du mouvement */
-        
-        /* Ajustements esthétiques pour mobile */
-        padding-left: 10vw; /* On commence plus vite sur mobile */
-        gap: 20px; /* Moins d'espace entre les images */
-    }
-
-    /* 3. Images adaptées au mobile */
-    .projet-item {
-        /* Sur mobile, l'image doit prendre presque tout l'écran pour être visible */
-        width: 85vw; 
-        min-width: auto; /* On annule la limite minimum du PC */
-    }
+.projet-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.06);
 }
 
-.bordure{
-    width: 100wh;
-}
-
-.bordure img{
-    width: 100%;
-    display: block; /* <--- AJOUTE CETTE LIGNE */
-}
-
-/* --- SECTION CONTACT --- */
+/* =========================================
+   6. SECTION CONTACT & FOOTER
+========================================= */
 .contact-section {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 1rem 5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     margin-top: 8rem;
     text-align: center;
 }
 
-.contact-section h2 {
-    margin-bottom: 30px;
-}
+.contact-section span { color: #898989; }
+.contact-section span:hover { color: white; }
 
-.contact-section span{
-    color: #898989;
-}
-
-.contact-section span:hover{
-    color: white;
-}
-
-a {
-    text-decoration: none;
-}
-
-#cont{
+#cont {
     width: 40%;
     text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
-#cont p{
+#cont p {
     margin-bottom: 15px;
     font-size: 1.1rem;
     color: #898989;
 }
+#cont p:hover { color: #F9F9F9; }
 
-#cont p:hover{
-    color: #F9F9F9;
+#img_contact { width: 40%; }
+#img_contact img { width: 80%; }
+address { font-style: normal; }
+
+#cont h2 {
+    font-size: 4rem;
+    display: flex; 
+    align-items: center; 
+    flex-wrap: nowrap; 
+    gap: 10px; 
 }
 
-#img_contact{
-    width: 40%;
+.sticker-touch {
+    width: 220px !important; 
+    height: auto;
+    display: block;
+    transform: translateY(0); 
+    transition: transform 0.3s ease;
 }
 
-#img_contact img{
-    width: 50%;
-}
-
-footer{
+footer {
     text-align: center;
     padding: 1rem 3rem;
 }
 
-/* --- MOBILE --- */
-/* --- Gardez votre code mobile tel quel --- */
-@media (max-width: 768px) {
-     .side-menu {
-         width: 100%;
-         /* Sur mobile, transform marche aussi parfaitement */
-     }
+/* =========================================
+   7. ÉLÉMENTS DÉCORATIFS & UI
+========================================= */
+.bordure { width: 100%; }
+.bordure img { width: 100%; display: block; }
+
+#cursor-tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FF83D1;
+    color: #0f0f0f;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transform: translate(-50%, -150%);
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* --- DÉSACTIVER LES SOULIGNEMENTS SUR MOBILE ET TABLETTE --- */
+#cursor-tooltip.visible { opacity: 1; }
+
+/* =========================================
+   9. ANIMATIONS D'APPARITION AU SCROLL
+========================================= */
+.hidden-anim {
+    opacity: 0;
+    transform: translateY(40px); 
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hidden-anim.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 150ms; }
+.delay-2 { transition-delay: 300ms; }
+.delay-3 { transition-delay: 450ms; }
+
+/* =========================================
+   8. MEDIA QUERIES (Responsive)
+========================================= */
+@media (hover: none) {
+    .projet-item img {
+        filter: grayscale(0%); 
+        transform: scale(1); 
+    }
+    .projet-item:active img {
+        filter: grayscale(0%);
+        transform: scale(1);
+    }
+}
+
+/* --- TABLETTES (<= 1024px) --- */
 @media screen and (max-width: 1024px) {
-    /* On cible les barres (::before) des 3 sections */
-    .side-menu a span::before,
-    #projets a span::before,
-    #cont a span::before {
-        display: none; /* La barre disparaît complètement */
-        content: none; /* Sécurité supplémentaire */
+    #about {
+        display: flex;
+        flex-direction: column; 
+        margin: 4rem 0 2rem 0;
+        gap: 2rem;
+    }
+
+    #moi {
+        width: 100%;
+        max-width: 500px; 
+        height: auto;
+        margin: 0 auto; 
+        padding-left: 0;
+        order: -1; 
+    }
+
+    #about h2 {
+        flex-wrap: nowrap; 
+        align-items: center;
+        font-size: clamp(2rem, 5vw, 3rem); 
+        gap: 5px; 
+    }
+
+    #about h2 .sticker-img {
+        width: clamp(180px, 30vw, 300px) !important; 
+        transform: translateY(-2px); 
+    }
+
+    #about p {
+        max-width: 100%; 
+        padding-right: 0;
+        font-size: 1.1rem;
+    }
+
+    .stack-container {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .stack-footer { gap: 15px; }
+
+    .cv-wrapper {
+        display: flex;
+        flex-wrap: nowrap !important; 
+        align-items: center;
+    }
+
+    .cta-text {
+        font-size: clamp(1.2rem, 4vw, 1.5rem); 
+        white-space: nowrap; 
+    }
+
+    #cv {
+        width: clamp(120px, 20vw, 150px) !important;
+        transform: translateY(0);
+    }
+
+    .projets-header { align-items: center; }
+    .projets-header h2 { font-size: clamp(3rem, 6vw, 4rem); }
+    .horizontal-scroll-track { align-items: flex-start; }
+    
+    .contact-section { justify-content: space-between; }
+    #cont { width: 50%; }
+    #cont h2 {
+        font-size: clamp(2.5em, 5vw, 4rem); 
+        gap: 10px;
+    }
+    .sticker-touch { width: clamp(140px, 20vw, 220px) !important; }
+    #img_contact { width: 45%; }
+    #img_contact img {
+        width: 100%; 
+        height: auto;
+    }
+}
+
+/* --- MOBILES (<= 768px) --- */
+@media (max-width: 768px) {
+    .side-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 100%; 
+        background-color: #FF83D1; 
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(100%); 
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 999;
+    }
+
+    .side-menu.active { transform: translateX(0); }
+    .side-menu a {
+        font-size: 1.5rem;
+        padding: 2rem;
+    }
+    .side-menu a span { color: #F9F9F9; }
+
+    #acceuil { height: 100vh; }
+    .hero-content {
+        transform: translateY(0); 
+        padding-top: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .hero-title { font-size: clamp(4rem, 25vw, 6rem); }
+    .forlio-sticker {
+        width: clamp(200px, 80vw, 350px); 
+        margin-top: -3vw; 
+    }
+    .hero-subtitle {
+        font-size: 0.9rem; 
+        margin-top: 3vh; 
+        line-height: 1.5; 
+    }
+
+    #projets {
+        height: auto; 
+        padding: 4rem 0; 
+    }
+    .sticky-wrapper {
+        position: relative; 
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        gap: 3rem;
+    }
+    .projets-header {
+        align-items: flex-start; 
+        padding-left: 2rem; 
+    }
+    .projets-header h2 {
+        font-size: 10vw;
+        padding: 0;
+    }
+    .horizontal-scroll-track {
+        flex-direction: row; 
+        transform: none !important; 
+        padding-left: 2rem; 
+        padding-right: 2rem; 
+        gap: 20px; 
+        align-items: flex-start; 
+        overflow-x: auto; 
+        overflow-y: hidden; 
+        scroll-snap-type: x mandatory; 
+        -webkit-overflow-scrolling: touch; 
+        scrollbar-width: none; 
+    }
+    .horizontal-scroll-track::-webkit-scrollbar { display: none; }
+    .projet-item {
+        width: 80vw; 
+        min-width: auto; 
+        scroll-snap-align: center; 
+    }
+
+    #about {
+        padding: 2rem 2rem;
+        gap: 1.5rem;
+    }
+    #moi { max-width: 350px; }
+    #about h2 .sticker-img { width: clamp(150px, 45vw, 220px) !important; }
+    #about p { font-size: 1rem; }
+    
+    .stack-item {
+        width: 55px;
+        height: 55px;
+        padding: 10px;
+    }
+    .cta-text { font-size: clamp(1.1rem, 5vw, 1.3rem); }
+    #cv { width: clamp(100px, 30vw, 120px) !important; }
+    .cv-wrapper { gap: 0px; }
+
+    .contact-section {
+        flex-direction: column; 
+        padding: 2rem 3rem;
+        gap: 4rem; 
+        margin-top: 4rem;
+    }
+    #cont {
+        width: 100%; 
+        align-items: flex-start; 
+        gap: 3vh;
+    }
+    #cont h2 {
+        gap: 8px;
+        font-size: 10vw;
+    }
+    .sticker-touch { width: clamp(100px, 25vw, 140px) !important; }
+    address { margin-top: 1rem; }
+    #cont p { font-size: 1rem; }
+    
+    #img_contact {
+        width: 100%;
+        max-width: 350px; 
+        margin: 0 auto; 
+    }
+    #img_contact img { width: 100%; }
+    footer p { font-size: 0.9rem; }
+}
+
+/* --- UNIQUEMENT POUR LES ÉCRANS AVEC SOURIS (Desktop) --- */
+@media (hover: hover) {
+    .stack-item img {
+        filter: grayscale(100%); 
+        opacity: 0.7;            
+    }
+    .stack-item:hover {
+        transform: translateY(-5px);
+        background-color: #333;
+        cursor: pointer;
+    }
+    .stack-item:hover img {
+        filter: grayscale(0%);   
+        opacity: 1;
+        transform: scale(1.1);
     }
 }
