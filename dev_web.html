@@ -1,123 +1,146 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ALB - developpement Web</title>
-    <meta name="description" content="Projet en developpement web d'Alexandra Le Bozec développeuse web en troisième année d'un BUT MMI">
+    <title>Web Development & Front-End Projects | Alexandra Le Bozec</title>
+    <meta name="description" content="Explore my web development projects including the Sports App integration, The Pumpkin Killer Unity game, and dynamic Ajax websites by Alexandra Le Bozec.">
     <meta name="author" content="Alexandra Le Bozec">
-
     <link rel="icon" type="image/x-icon" href="">
-
     <link rel="stylesheet" href="style_p.css">
 </head>
-
 <body>
 
     <header>
-        <nav class="navbar">
-        <div class="brand-name"><a href="index.html"><span>ALB</span></a></div>
+        <nav class="navbar" role="navigation">
+            <div class="brand-name">
+                <a href="index.html"><span>ALB</span></a>
+            </div>
+
+            <ul class="side-menu">
+                <li><a href="index.html#acceuil"><span>HOME</span></a></li>
+                <li><a href="index.html#about"><span>ABOUT</span></a></li>
+                <li><a href="index.html#projets"><span>PROJECTS</span></a></li>
+                <li><a href="index.html#cont"><span>CONTACT</span></a></li>
+            </ul>
+
+            <button class="hamburger" aria-label="Open menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </nav>
     </header>
+
+    
 
     <main>
         <div id="stickers">
             <img 
-        src="photo/web2.png" 
-        data-hover="photo/web.png" 
-        alt="audiovisual" 
-        class="sticker-img sticker-touch"
-        >
+            src="photo/web2.png" 
+            data-hover="photo/web.png" 
+            alt="Web Development Project Sticker" 
+            class="sticker-img sticker-touch"
+            >
         </div>
 
-    <a href="index.html#projets" class="back-link">← Retour en arrière</a>
+        <a href="index.html#projets" class="back-link">← Back to projects</a>
 
-    <div id="projects-scroll-container">
-        
-        <div class="projects-sticky-wrapper">
+        <div id="projects-scroll-container">
             
-            <div class="projects-track">
+            <div class="projects-sticky-wrapper">
+                
+                <div class="projects-track">
 
-                <section class="project-details">
-                    <div class="project-image">
-                        <h1>Diviser pour mieux trier</h1>
-                        <video autoplay muted loop playsinline class="video-hover">
-        <source src="photo/mockup_site2.mp4" type="video/mp4">
-        Votre navigateur ne supporte pas la vidéo.
-    </video>
-                    </div>
-                    <div class="project-info">
-                        <h3>About the project</h3>
-                        <p>For this group project, my team designed a communication campaign commissioned by the European
-Commission to raise awareness among young adults about the issue of residual waste. The goal was
-to increase awareness and encourage the target audience to adopt more eco-friendly behaviors.</p>
-                        <h3>The Process</h3>
-                        <p>In this project, my role was to manage communication and content writing, create social media posts,
-and handle the legal dossier and regulatory framework of the campaign. I also designed the <a href="https://www.figma.com/design/Qc2RTjc0LjQ7fFV71qH93S/Sina%C3%AF-maquette?node-id=0-1&t=HaFZl4rmYBBSs2LL-1" target="_blank">website mockup</a> using Figma.</p>
-                    </div>
-                </section>
+                    <section class="project-details">
+                        <div class="project-image hidden-anim">
+                            <h2>Sports app - Integration </h2>
 
-                <section class="project-details">
-                    <div class="project-image">
-                        <h1>The Pumpkin Killer</h1>
-                        <img src="photo/mockup_site.png" alt="projet2">
-                    </div>
-                    <div class="project-info">
-                        <h3>About the project</h3>
-                        <p>This project is a game developed on Unity that puts into practice collision management
-and interactions with buttons. The player explores a castle and must collect three flames,
-which appear successively by triggering sounds and visual effects. The game consists of
-three stages: a start screen with a launch button, the gameplay phase in FPS, and an
-end screen.</p>
-                        <h3>The Process</h3>
-                        <p>I chose to create
-a Survival Horror game with an Halloween theme. The story follows a father
-trying to find his daughter, kidnapped by the Pumpkin Killer on Halloween night.</p>
-                    </div>
-                </section>
+                            <div class="img-wrapper">
+                                <a href="https://itssnael.github.io/sports-app/" target="_blank"><img src="photo/css.jpg" alt="Mockup of the Sports App interface"></a>
+                            </div>
 
-                <section class="project-details">
-                    <div class="project-image">
-                        <h1>Ajax</h1>
-                        <img src="photo/mockup_site.png" alt="projet1">
-                    </div>
-                    <div class="project-info">
-                        <h3>About the project</h3>
-                        <p>For this web integration project, I developed an interactive one-page website
-using Ajax to enable dynamic image filtering based on several criteria. The goal
-was to create a smooth and ergonomic interface, highlighting original objects
-or services.</p>
-                        <h3>The Process</h3>
-                        <p>I developed a one-page website about exotic flowers, integrating Ajax filtering
-by habitat and usage. The site uses HTML, CSS, JavaScript (jQuery, Ajax),
-PHP, and a database I created to dynamically display and sort data. I also
-integrated an interactive SVG map that allows users to filter flowers by their
-geographical area.</p>
-                    </div>
-                </section>
+                        </div>
+                        <div class="project-info hidden-anim delay-1">
+                            <h3>About the project</h3>
+                            <p>The goal was to design and integrate the interface for a collaborative sports app. The concept? Connecting users with similar fitness goals, allowing them to share their performances, workout routines, and nutrition tips.</p>
+                            <h3>The Process</h3>
+                            <p>Before diving in, I conducted visual research on Behance and Pinterest 
+                                to establish a modern and dynamic visual direction tailored to the fitness industry.
+                                 Based on the brief, I designed <a href="https://www.figma.com/design/8se657MG3vyvSW5bxnu8Br/Sports-app?node-id=0-1&t=ofyAro7L86iI4fZl-1" target="_blank">the screens on Figma.</a>
+                                  I focused on the user experience to highlight the core features, the workout list system, user profiles, and the chat area. Once the
+                                   mockup was finalized, I built a clean, <a href="https://itssnael.github.io/sports-app/" target="_blank">semantic HTML structure and styled it using CSS.</a></p>
+                        </div>
+                    </section>
 
-                <section class="project-details">
-                    <div class="project-image">
-                        <h1>Maquette css</h1>
-                        <img src="photo/mockup_site.png" alt="projet1">
-                    </div>
-                    <div class="project-info">
-                        <h3>About the project</h3>
-                        <p>For this group project, my team designed a communication campaign commissioned by the European
-Commission to raise awareness among young adults about the issue of residual waste. The goal was
-to increase awareness and encourage the target audience to adopt more eco-friendly behaviors.</p>
-                        <h3>The Process</h3>
-                        <p>In this project, my role was to manage communication and content writing, create social media posts,
-and handle the legal dossier and regulatory framework of the campaign. I also designed the <a href="https://www.figma.com/design/Qc2RTjc0LjQ7fFV71qH93S/Sina%C3%AF-maquette?node-id=0-1&t=HaFZl4rmYBBSs2LL-1" target="_blank">website mockup</a> using Figma.</p>
-                    </div>
-                </section>
+                    <section class="project-details">
+                        <div class="project-image hidden-anim">
+                            <h2>The Pumpkin Killer</h2>
+                            
+                            <div class="img-wrapper">
+                                <img src="photo/pk.jpg" alt="Screenshot of The Pumpkin Killer Unity game">
+                            </div>
+                            
+                        </div>
+                        <div class="project-info hidden-anim delay-1">
+                            <h3>About the project</h3>
+                            <p>Developed in Unity, this survival 3D horror game focuses on collision management and UI interactions.
+ The player explores a castle and must collect three flames,
+    which appear successively by triggering sounds and visual effects. The game consists of
+    three stages: a start screen with a launch button, the gameplay phase in FPS, and an
+    end screen.</p>
 
-                 </div>
+                            <h3>The Process</h3>
+                            <p>I chose to create
+    a Survival Horror game with an Halloween theme. The story follows a father
+    trying to find his daughter, kidnapped by the Pumpkin Killer on Halloween night.</p>
+                        </div>
+                    </section>
+
+                    <section class="project-details">
+                        <div class="project-image hidden-anim">
+                            <h2>Diviser pour mieux trier</h2>
+                            <div class="img-wrapper">
+                                <a href="https://www.figma.com/design/Qc2RTjc0LjQ7fFV71qH93S/Sina%C3%AF-maquette?node-id=0-1&t=HaFZl4rmYBBSs2LL-1" target="_blank"><img src="photo/mockup_site.png" alt="Mockup of the Sinaï awareness campaign website"></a>
+                            </div>
+                        </div>
+                        <div class="project-info hidden-anim delay-1">
+                            <h3>About the project</h3>
+                            <p>Commissioned by the European Commission, this awareness campaign aims to educate young adults about residual waste. Working in a team, named Sinaï, our goal was to encourage the target audience to adopt more eco-friendly behaviors thanks to a communication campaign</p>
+                            <h3>The Process</h3>
+                            <p>In this project, my role was to manage communication and content writing, <a href="https://www.figma.com/design/Qc2RTjc0LjQ7fFV71qH93S/Sina%C3%AF-maquette?node-id=0-1&t=HaFZl4rmYBBSs2LL-1" target="_blank">create social media posts,</a>
+    and handle the legal dossier and regulatory framework of the campaign. I also designed the <a href="https://www.figma.com/design/Qc2RTjc0LjQ7fFV71qH93S/Sina%C3%AF-maquette?node-id=0-1&t=HaFZl4rmYBBSs2LL-1" target="_blank">website mockup</a> using Figma.</p>
+                        </div>
+                    </section>
+
+                    <section class="project-details">
+                        <div class="project-image hidden-anim">
+                            <h2>Exotic flowers - Ajax</h2>
+
+                            <div class="img-wrapper">
+                                <a href="https://alexandra.lebozec.mmi-velizy.fr/MMI-2bis/tri-dynamique-ajax/" target="_blank"><img src="photo/fleur.jpg" alt="Interface of the Exotic Flowers Ajax website"></a>
+                            </div>
+
+                        </div>
+                        <div class="project-info hidden-anim delay-1">
+                            <h3>About the project</h3>
+                            <p>Built as a dynamic one-page website, 
+                                this platform utilizes Ajax to enable smooth image 
+                                filtering based on several criteria. The goal was 
+                                to create an ergonomic interface highlighting exotic flora.</p>
+                            <h3>The Process</h3>
+                            <p>I developed a <a href="https://alexandra.lebozec.mmi-velizy.fr/MMI-2bis/tri-dynamique-ajax/" target="_blank">one-page website</a> about exotic flowers, integrating Ajax filtering
+    by habitat and usage. The site uses HTML, CSS, JavaScript (jQuery, Ajax),
+    PHP, and a database I created to dynamically display and sort data. I also
+    integrated an interactive SVG map that allows users to filter flowers by their
+    geographical area.</p>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 
     <footer>
         <p>&copy; <span id="year"></span> Alexandra Le Bozec. All rights reserved.</p>
