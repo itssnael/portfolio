@@ -683,6 +683,9 @@ footer {
         gap: 8px;
         font-size: 10vw;
     }
+    #cont p{
+        color: #F9F9F9;
+    }
     .sticker-touch { width: clamp(100px, 25vw, 140px) !important; }
     address { margin-top: 1rem; }
     #cont p { font-size: 1rem; }
@@ -712,4 +715,5 @@ footer {
         opacity: 1;
         transform: scale(1.1);
     }
+
 }
