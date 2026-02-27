@@ -650,19 +650,20 @@ footer {
         scrollbar-color: #f9f9f9 rgba(255, 255, 255, 0.1); /* Couleur du curseur rose / fond transparent */
     }
 
-    /* --- STYLE DE LA BARRE POUR CHROME / SAFARI / iOS --- */
+/* --- STYLE DE LA BARRE POUR CHROME / SAFARI / iOS --- */
     .horizontal-scroll-track::-webkit-scrollbar { 
-        display: block; /* On réactive l'affichage */
-        height: 6px; /* Épaisseur de la barre */
+        -webkit-appearance: none; /* Désactive le masquage automatique d'iOS/Android */
+        display: block !important; /* Force l'affichage permanent */
+        height: 6px !important; /* Épaisseur de la barre */
     }
     
     .horizontal-scroll-track::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05); /* Un fond de rail très discret */
+        background: rgba(255, 255, 255, 0.1) !important; /* Fond du rail permanent */
         border-radius: 10px;
     }
     
     .horizontal-scroll-track::-webkit-scrollbar-thumb {
-        background-color: #f9f9f9; /* Le curseur en rose ! */
+        background-color: #FF83D1 !important; /* Curseur rose permanent */
         border-radius: 10px;
     }
     .projet-item {
@@ -732,4 +733,5 @@ footer {
         opacity: 1;
         transform: scale(1.1);
     }
+
 }
