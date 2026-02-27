@@ -505,7 +505,7 @@ footer {
 
     /* On laisse la vidéo à sa place à gauche, sans la forcer au centre */
     #moi {
-        width: 70%; /* Prend bien la largeur de sa colonne */
+        width: 80%; /* Prend bien la largeur de sa colonne */
         height: auto;
         padding-left: 0; 
     }
@@ -527,6 +527,10 @@ footer {
         max-width: 100%; 
         padding-right: 0;
         font-size: 0.95rem; /* Légèrement plus petit pour tenir sur la moitié de l'écran */
+    }
+
+    #about h3{
+        font-size: 1.3rem;
     }
 
     .stack-container {
@@ -685,6 +689,7 @@ footer {
         /* LE CORRECTIF : On force le mode colonne uniquement sur téléphone */
         display: flex;
         flex-direction: column; 
+        align-items: flex-start;
     }
     
     #moi { 
