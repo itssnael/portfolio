@@ -514,7 +514,7 @@ footer {
     #about h2 {
         flex-wrap: wrap; 
         align-items: center;
-        font-size: clamp(1.8rem, 3.5vw, 2.5rem); 
+        font-size: clamp(2.2rem, 3.5vw, 2.5rem); 
         gap: 5px; 
     }
 
@@ -699,7 +699,7 @@ footer {
         padding-left: 0;
         order: -1; /* Assure que la vidéo repasse tout en haut, au-dessus du texte */
     }
-    #about h2 .sticker-img { width: clamp(150px, 45vw, 220px) !important; }
+    #about h2 .sticker-img { width: clamp(150px, 50vw, 220px) !important; }
     #about p { font-size: 1rem; }
     
     .stack-item {
