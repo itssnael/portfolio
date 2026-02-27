@@ -624,48 +624,51 @@ footer {
         gap: 3rem;
     }
     .projets-header {
-        align-items: flex-start; 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; 
         padding-left: 2rem; 
+        padding-right: 2rem;
+        width: 100%;
     }
+
     .projets-header h2 {
         font-size: 10vw;
         padding: 0;
     }
-.horizontal-scroll-track {
+
+    /* --- L'INDICATEUR "SWIPE" CRÉÉ DE TOUTES PIÈCES EN CSS --- */
+    .projets-header::after {
+        content: 'Swipe \2192'; /* Écrit "Swipe" suivi d'une flèche */
+        color: #F9F9F9;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        animation: swipeHint 1.5s infinite ease-in-out;
+    }
+
+    /* Petite animation de la flèche qui va de gauche à droite */
+    @keyframes swipeHint {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(10px); }
+    }
+    .horizontal-scroll-track {
         flex-direction: row; 
         transform: none !important; 
         padding-left: 2rem; 
         padding-right: 2rem; 
-        padding-bottom: 1.5rem; /* Un peu d'espace en bas pour que la barre ne colle pas aux images */
         gap: 20px; 
         align-items: flex-start; 
         overflow-x: auto; 
         overflow-y: hidden; 
         scroll-snap-type: x mandatory; 
         -webkit-overflow-scrolling: touch; 
+        scrollbar-width: none; 
         width: 100%; 
-        
-        /* --- STYLE DE LA BARRE POUR FIREFOX --- */
-        scrollbar-width: thin; /* Barre fine */
-        scrollbar-color: #f9f9f9 rgba(255, 255, 255, 0.1); /* Couleur du curseur rose / fond transparent */
     }
 
-/* --- STYLE DE LA BARRE POUR CHROME / SAFARI / iOS --- */
-    .horizontal-scroll-track::-webkit-scrollbar { 
-        -webkit-appearance: none; /* Désactive le masquage automatique d'iOS/Android */
-        display: block !important; /* Force l'affichage permanent */
-        height: 6px !important; /* Épaisseur de la barre */
-    }
-    
-    .horizontal-scroll-track::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1) !important; /* Fond du rail permanent */
-        border-radius: 10px;
-    }
-    
-    .horizontal-scroll-track::-webkit-scrollbar-thumb {
-        background-color: #FF83D1 !important; /* Curseur rose permanent */
-        border-radius: 10px;
-    }
+    .horizontal-scroll-track::-webkit-scrollbar { display: none; }
     .projet-item {
         width: 80vw; 
         min-width: auto; 
@@ -735,3 +738,4 @@ footer {
     }
 
 }
+
