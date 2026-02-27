@@ -636,16 +636,35 @@ footer {
         transform: none !important; 
         padding-left: 2rem; 
         padding-right: 2rem; 
+        padding-bottom: 1.5rem; /* Un peu d'espace en bas pour que la barre ne colle pas aux images */
         gap: 20px; 
         align-items: flex-start; 
         overflow-x: auto; 
         overflow-y: hidden; 
         scroll-snap-type: x mandatory; 
         -webkit-overflow-scrolling: touch; 
-        scrollbar-width: none;
-        width: 100%;
+        width: 100%; 
+        
+        /* --- STYLE DE LA BARRE POUR FIREFOX --- */
+        scrollbar-width: thin; /* Barre fine */
+        scrollbar-color: #f9f9f9 rgba(255, 255, 255, 0.1); /* Couleur du curseur rose / fond transparent */
     }
-    .horizontal-scroll-track::-webkit-scrollbar { display: none; }
+
+    /* --- STYLE DE LA BARRE POUR CHROME / SAFARI / iOS --- */
+    .horizontal-scroll-track::-webkit-scrollbar { 
+        display: block; /* On réactive l'affichage */
+        height: 6px; /* Épaisseur de la barre */
+    }
+    
+    .horizontal-scroll-track::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05); /* Un fond de rail très discret */
+        border-radius: 10px;
+    }
+    
+    .horizontal-scroll-track::-webkit-scrollbar-thumb {
+        background-color: #f9f9f9; /* Le curseur en rose ! */
+        border-radius: 10px;
+    }
     .projet-item {
         width: 80vw; 
         min-width: auto; 
@@ -719,6 +738,7 @@ footer {
     }
 
 }
+
 
 
 
