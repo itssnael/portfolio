@@ -335,6 +335,17 @@ footer { display: none; }
         padding-top: 0px;
     }
 
+.sticker-touch2 {
+        /* On remplace le 85% rigide par une taille fluide et intelligente */
+        width: clamp(200px, 70vw, 350px) !important; 
+        
+        /* LA LIGNE MAGIQUE ANTI-ÉCRASEMENT : force l'image à garder ses proportions */
+        height: auto !important; 
+        
+        /* On s'assure qu'il reste bien centré */
+        margin: 0 auto; 
+    }
+
     footer {
         display: block;
         text-align: center;
@@ -416,5 +427,4 @@ footer { display: none; }
     }
     
     .back-link { margin: 0 0 1rem 2rem; }
-
 }
