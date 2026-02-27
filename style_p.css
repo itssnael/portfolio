@@ -337,7 +337,7 @@ footer { display: none; }
 
 .sticker-touch2 {
         /* On remplace le 85% rigide par une taille fluide et intelligente */
-        width: clamp(200px, 70vw, 350px) !important; 
+        width: clamp(200px, 80vw, 750px) !important; 
         
         /* LA LIGNE MAGIQUE ANTI-ÉCRASEMENT : force l'image à garder ses proportions */
         height: auto !important; 
