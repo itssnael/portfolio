@@ -1,143 +1,158 @@
-// On attend que le document soit chargé
-document.addEventListener('DOMContentLoaded', () => {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexandra Le Bozec | Creative Web Developer Portfolio</title>
+    <meta name="description" content="Welcome to the portfolio of Alexandra Le Bozec, a passionate creative Web Developer. Discover my projects combining code, algorithmic logic, and visual art.">
+    <meta name="author" content="Alexandra Le Bozec">
+
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar" role="navigation">
+            <div class="brand-name">
+                <a href="index.html"><span>ALB</span></a>
+            </div>
+
+            <ul class="side-menu">
+                <li><a href="#acceuil"><span>HOME</span></a></li>
+                <li><a href="#about"><span>ABOUT</span></a></li>
+                <li><a href="#projets"><span>PROJECTS</span></a></li>
+                <li><a href="#cont"><span>CONTACT</span></a></li>
+            </ul>
+
+            <button class="hamburger" aria-label="Open menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="acceuil">
+            <div class="hero-content">
+    <h1 class="hero-title hidden-anim">PORT</h1>
+    <img src="photo/folio.svg" alt="sticker Folio" class="forlio-sticker hidden-anim delay-1">
+    <p class="hero-subtitle hidden-anim delay-2">ALEXANDRA LE BOZEC - At the intersection of technology and art</p>
+</div>
+        </section>
+
+        <section id="about">
+            <img src="photo/Capture d'écran 2025-03-28 173030.png" alt="Portrait d'Alexandra Le Bozec" id="moi" class="hidden-anim">
+            <h2 class="hidden-anim delay-1">Hi, it's
+    <img src="photo/alex.png" data-hover="photo/alex_2.png" alt="Sticker Alexandra" class="sticker-img">
+</h2>
+
+<p class="hidden-anim delay-2">I believe code and design are inseparable. I love blending colors, motion, and light in my projects. Beyond visuals, algorithmic logic and web integration are at the core of my process.
+            <br><br>Currently in my 3rd year of a Bachelor’s degree in Multimedia and Internet (Web Development track) and apprentice Community Manager at the French Ministry of Agriculture, I apply this vision to my work daily. Versatile and curious, my multidisciplinary background allows me to adapt quickly to any environment.
+            <br><br>Constantly seeking to improve, I am now eager to take on new challenges to continue learning and growing professionally.</p>
     
-    // --- PARTIE MENU BURGER ---
-    const hamburger = document.querySelector(".hamburger");
-    const sideMenu = document.querySelector(".side-menu");
-
-    if (hamburger && sideMenu) { // Sécurité : on vérifie que le menu existe
-        // Gestion du clic sur le burger
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            sideMenu.classList.toggle("active");
-        });
-
-        // Fermer le menu quand on clique sur un lien
-        document.querySelectorAll(".side-menu li a").forEach(link => {
-            link.addEventListener("click", () => {
-                hamburger.classList.remove("active");
-                sideMenu.classList.remove("active");
-            });
-        });
-    }
-
-    // --- PARTIE STICKER (IMAGE SURVOL) ---
-    // --- PARTIE STICKERS (GÉRER TOUS LES STICKERS) ---
-    // On utilise querySelectorAll pour prendre TOUTES les images, pas juste la première
-    const stickers = document.querySelectorAll('.sticker-img');
-
-    stickers.forEach(sticker => {
-        // 1. Récupérer les sources pour CHAQUE sticker
-        const originalSrc = sticker.src;
-        const hoverSrc = sticker.getAttribute('data-hover');
-
-        // Sécurité : on ne fait rien si data-hover est vide
-        if (hoverSrc) {
-            // 2. Préchargement
-            const imgPreload = new Image();
-            imgPreload.src = hoverSrc;
-
-            // 3. Animation au survol
-            sticker.addEventListener('mouseenter', () => {
-                sticker.src = hoverSrc;
-            });
-
-            // 4. Retour à la normale
-            sticker.addEventListener('mouseleave', () => {
-                sticker.src = originalSrc;
-            });
-        }
-    });
-
-    // Met à jour l'année automatiquement dans le footer
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// --- PARTIE SCROLL HORIZONTAL (PROJETS) ---
-    const stickySection = document.querySelector('#projets');
-    const stickyHeader = document.querySelector('.sticky-wrapper');
-    const scrollTrack = document.querySelector('.horizontal-scroll-track');
-
-    if (stickySection && scrollTrack) {
-        window.addEventListener('scroll', () => {
-            // 1. On récupère la position de la section par rapport au haut de l'écran
-            const offsetTop = stickySection.offsetTop;
-            // 2. On regarde combien on a scrollé depuis le haut du site
-            const scrollY = window.scrollY;
-            // 3. On récupère la hauteur de la fenêtre
-            const windowHeight = window.innerHeight;
-            // 4. On récupère la hauteur totale de la section Projets
-            const sectionHeight = stickySection.offsetHeight;
-
-            // --- CALCUL DU POURCENTAGE ---
-            // On calcule où on est "dans" la section (entre 0 et 1)
-            // On commence à scroller quand le haut de la section touche le haut de l'écran
-            let percentage = (scrollY - offsetTop) / (sectionHeight - windowHeight);
-
-            // On borne le pourcentage entre 0 et 1 pour éviter que ça parte trop loin
-            percentage = Math.max(0, Math.min(1, percentage));
-
-            // --- CALCUL DU DÉPLACEMENT ---
-            // On veut que le rail bouge vers la gauche.
-            // Distance à parcourir = Largeur totale du rail - Largeur de l'écran
-            const trackWidth = scrollTrack.scrollWidth;
-            const viewportWidth = window.innerWidth;
-            
-            // Si sur mobile (écran petit), on ne fait rien (géré par CSS)
-            if (window.innerWidth > 768) {
-                const moveDistance = (trackWidth - viewportWidth + 300) * percentage; // +100 pour un peu de marge fin
+            <div class="stack-container hidden-anim delay-3">
+                <h3>My Creative & Tech Stack</h3>
                 
-                // On applique le déplacement négatif (vers la gauche)
-                scrollTrack.style.transform = `translateX(-${moveDistance}px)`;
-            }
-        });
-    }
+                <ul id="skills-logos">
+                    <li class="stack-item" data-name="HTML5"><img src="photo/logo/html-1.svg" alt="HTML5"></li>
+                    <li class="stack-item" data-name="CSS3"><img src="photo/logo/css-3.svg" alt="CSS3"></li>
+                    <li class="stack-item" data-name="SQL"><img src="photo/logo/sql-database-generic-svgrepo-com.svg" alt="SQL"></li>
+                    <li class="stack-item" data-name="Python"><img src="photo/logo/python-svgrepo-com.svg" alt="Python"></li>
+                    <li class="stack-item" data-name="Premiere Pro"><img src="photo/logo/Adobe_Premiere_Pro_CC_icon.svg" alt="Premiere Pro"></li>
+                    <li class="stack-item" data-name="Illustrator"><img src="photo/logo/adobe-illustrator-svgrepo-com.svg" alt="Illustrator"></li>
+                    <li class="stack-item" data-name="After Effects"><img src="photo/logo/Adobe_After_Effects_CC_icon.svg" alt="After Effects"></li>
+                </ul>
 
-    // ============================================================
-    // 6. SLIDER HORIZONTAL (SANS SCROLLBAR VERTICALE)
-    // ============================================================
-    const devContainer = document.querySelector('#projects-scroll-container');
-    const devTrack = document.querySelector('.projects-track');
-
-    if (devContainer && devTrack) {
-        
-        // Variable pour stocker la position actuelle (en pixels)
-        let currentScroll = 0;
-
-        // On écoute l'événement "wheel" (molette de la souris)
-        devContainer.addEventListener('wheel', (evt) => {
-            // Empêche le comportement par défaut (si jamais)
-            evt.preventDefault();
-
-            // Calcul de la limite max (Largeur totale - Largeur écran)
-            const maxScroll = devTrack.scrollWidth - window.innerWidth;
-
-            // On ajoute le mouvement de la molette (deltaY) à notre position
-            // evt.deltaY est positif quand on descend, négatif quand on monte
-            currentScroll += evt.deltaY;
-
-            // On empêche d'aller trop loin (pas moins de 0, pas plus que max)
-            currentScroll = Math.max(0, Math.min(currentScroll, maxScroll));
-
-            // On applique le déplacement
-            devTrack.style.transform = `translate3d(-${currentScroll}px, 0, 0)`;
-        });
-    }
-
-    // ============================================================
-    // 7. GESTION VIDÉO (PAUSE AU SURVOL)
-    // ============================================================
-    const videos = document.querySelectorAll('.video-hover');
-
-    videos.forEach(video => {
-        // Quand la souris entre sur la vidéo -> PAUSE
-        video.addEventListener('mouseenter', () => {
-            video.pause();
-        });
-
-        // Quand la souris quitte la vidéo -> LECTURE
-        video.addEventListener('mouseleave', () => {
-            video.play();
-        });
-    });
+                <div class="stack-footer">
+    <p>And it doesn't stop there...</p>
     
-});
+
+                    <div class="cv-wrapper">
+        <span class="cta-text">CHECK OUT MY</span>
+            <a href="CV_Alexandra_LE BOZEC_IUT Velizy_20250922.pdf" target="_blank" id="cv-link" aria-label="Download my CV">
+            <img src="photo/cv.png" data-hover="photo/cv_2.png" alt="CV Sticker" class="sticker-img" id="cv">
+        </a>
+    </div>
+</div>
+        </section>
+
+        <div class="bordure" aria-hidden="true">
+            <img src="photo/bordure_bas3.png" alt="">
+        </div>
+
+        <section id="projets">
+            <div class="sticky-wrapper">
+                <div class="projets-header">
+                    <h2>PROJECTS</h2>
+                </div>
+
+                <div class="horizontal-scroll-track">
+                    <article class="projet-item hidden-anim delay-1">
+                        <a href="dev_web.html" aria-label="Voir le projet Web Development">
+                            <img src="photo/mattiere1.jpg" alt="Aperçu projet Web">
+                        </a>
+                    </article>
+                    
+                    <article class="projet-item hidden-anim delay-1">
+                        <a href="graphic.html" aria-label="Voir le projet Graphisme">
+                            <img src="photo/mattiere2.jpg" alt="Aperçu projet Graphisme">
+                        </a>
+                    </article>
+                    
+                    <article class="projet-item hidden-anim delay-1">
+                        <a href="audio.html" aria-label="Voir le projet Audiovisuel">
+                            <img src="photo/mattiere3.jpg" alt="Aperçu projet Audiovisuel">
+                        </a>
+                    </article>
+                    
+                    <article class="projet-item hidden-anim delay-1">
+                        <a href="communication.html" aria-label="Voir le projet Communication">
+                            <img src="photo/mattiere4.jpg" alt="Aperçu projet Communication">
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <div class="bordure" aria-hidden="true">
+            <img src="photo/bordure_bas2.png" alt="">
+        </div>
+
+        <section id="contact" class="contact-section">
+            <div id="cont" class="hidden-anim">
+                    <h2>GET IN 
+                        <a href="mailto:a_lebozec@yahoo.com" class="link-touch"><img 
+                            src="photo/touch.png" 
+                            data-hover="photo/touch_2.png" 
+                            alt="Get in touch sticker" 
+                            class="sticker-img sticker-touch"
+                        ></a>
+                    !</h2>
+                
+                <address>
+                    <p><a href="mailto:a_lebozec@yahoo.com"><span>a_lebozec@yahoo.com</span></a></p>
+                    <p><a href="https://fr.linkedin.com/in/alexandra-le-bozec-6147892b1" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span></a></p>
+                    <p>Paris, FR</p>
+                </address>
+            </div>
+
+            <div id="img_contact" class="hidden-anim delay-1"> 
+    <img src="photo/polaroide-80.jpg" alt="Polaroid décoratif">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Alexandra Le Bozec. All rights reserved.</p>
+    </footer>
+
+    <div id="cursor-tooltip"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
