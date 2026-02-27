@@ -28,24 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================================
     const stickers = document.querySelectorAll('.sticker-img');
 
-    stickers.forEach(sticker => {
-        const originalSrc = sticker.src;
-        const hoverSrc = sticker.getAttribute('data-hover');
+    // On exécute l'effet uniquement si l'appareil a une vraie souris !
+    if (window.matchMedia("(hover: hover)").matches) {
+        stickers.forEach(sticker => {
+            const originalSrc = sticker.src;
+            const hoverSrc = sticker.getAttribute('data-hover');
 
-        if (hoverSrc) {
-            // Préchargement de l'image pour éviter le clignotement
-            const imgPreload = new Image();
-            imgPreload.src = hoverSrc;
+            if (hoverSrc) {
+                // Préchargement de l'image pour éviter le clignotement
+                const imgPreload = new Image();
+                imgPreload.src = hoverSrc;
 
-            sticker.addEventListener('mouseenter', () => {
-                sticker.src = hoverSrc;
-            });
+                sticker.addEventListener('mouseenter', () => {
+                    sticker.src = hoverSrc;
+                });
 
-            sticker.addEventListener('mouseleave', () => {
-                sticker.src = originalSrc;
-            });
-        }
-    });
+                sticker.addEventListener('mouseleave', () => {
+                    sticker.src = originalSrc;
+                });
+            }
+        });
+    }
 
     // ============================================================
     // 3. MISE À JOUR DE L'ANNÉE (FOOTER)
@@ -108,10 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================================
     const videos = document.querySelectorAll('.video-hover');
 
-    videos.forEach(video => {
-        video.addEventListener('mouseenter', () => video.pause());
-        video.addEventListener('mouseleave', () => video.play());
-    });
+    // On exécute l'effet de pause au survol uniquement si l'appareil a une vraie souris !
+    if (window.matchMedia("(hover: hover)").matches) {
+        videos.forEach(video => {
+            video.addEventListener('mouseenter', () => video.pause());
+            video.addEventListener('mouseleave', () => video.play());
+        });
+    }
     
     // ============================================================
     // 7. BULLE CURSEUR LOGOS (COMPÉTENCES)
@@ -119,7 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tooltip = document.getElementById('cursor-tooltip');
     const stackItems = document.querySelectorAll('.stack-item');
 
-    if (tooltip && stackItems.length > 0) {
+    // On ajoute la condition "hover: hover" ici aussi
+    if (tooltip && stackItems.length > 0 && window.matchMedia("(hover: hover)").matches) {
         stackItems.forEach(item => {
             item.addEventListener('mousemove', (e) => {
                 tooltip.style.left = e.clientX + 'px';
