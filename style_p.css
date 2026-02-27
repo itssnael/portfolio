@@ -335,8 +335,6 @@ footer { display: none; }
         padding-top: 0px;
     }
 
-    .sticker-touch2 { width: 85% !important; }
-
     footer {
         display: block;
         text-align: center;
@@ -418,4 +416,5 @@ footer { display: none; }
     }
     
     .back-link { margin: 0 0 1rem 2rem; }
+
 }
