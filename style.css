@@ -345,7 +345,7 @@ button.hamburger {
     grid-row: 2 / 3;
     display: flex;
     align-items: flex-start;
-    gap: 8vw; 
+    gap: 6vw; 
     padding-left: 35vw; 
     width: max-content; 
     will-change: transform; 
@@ -642,7 +642,8 @@ footer {
         overflow-y: hidden; 
         scroll-snap-type: x mandatory; 
         -webkit-overflow-scrolling: touch; 
-        scrollbar-width: none; 
+        scrollbar-width: none;
+        width: 100%;
     }
     .horizontal-scroll-track::-webkit-scrollbar { display: none; }
     .projet-item {
@@ -717,3 +718,4 @@ footer {
     }
 
 }
+
