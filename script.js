@@ -171,4 +171,25 @@ document.addEventListener('DOMContentLoaded', () => {
         hiddenElements.forEach((el) => observer.observe(el));
     }
 
+    // ============================================================
+    // 9. FORCER LA LECTURE DES VIDÉOS SUR MOBILE (Sécurité Safari/Chrome)
+    // ============================================================
+    const allVideos = document.querySelectorAll('video');
+    
+    allVideos.forEach(vid => {
+        // On s'assure que le son est bien coupé (strictement obligatoire pour l'autoplay mobile)
+        vid.muted = true;
+        
+        // On tente de forcer la lecture
+        let playPromise = vid.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                // Si le navigateur bloque quand même (ex: Mode économie d'énergie), 
+                // on évite de faire planter le reste du site et on l'affiche discrètement dans la console.
+                console.log("Lecture automatique bloquée par le navigateur mobile :", error);
+            });
+        }
+    });
+
 });
