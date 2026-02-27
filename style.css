@@ -171,15 +171,26 @@ button.hamburger {
 ========================================= */
 #about {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(4, auto);
-    gap: 20px;
-    padding: 2rem 4rem;
-    margin: 8rem 0 4rem 0;
+    grid-template-columns: 40% 60%;
+    column-gap: 5rem;
+    row-gap: 2rem;
+    max-width: 1300px;
+    margin: 8rem auto 4rem auto;
+    padding: 2rem;
+    align-items: center;
 }
 
+/* --- 1ère colonne : La vidéo polaroid --- */
+#moi {
+    width: 90%; /* Prend toute la largeur de sa colonne de 40% */
+    grid-column: 1 / 2;
+    grid-row: 1 / span 4;
+    margin-left: 25px;
+}
+
+/* --- 2ème colonne : Les textes et compétences --- */
 #about h2 {
-    grid-column: 5 / span 9;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
     display: flex;
     align-items: center;
@@ -188,17 +199,11 @@ button.hamburger {
 
 #about p {
     font-size: 1.05rem;
-    grid-column: 5 / span 9;
+    grid-column: 2 / 3;
     grid-row: 2 / 3;
-    max-width: 580px; 
+    line-height: 1.6;
     padding-right: 0; 
-}
-
-#moi {
-    padding-left: 40px;
-    width: 70%;
-    grid-column: 1 / span 5;
-    grid-row: 1 / span 3;
+    max-width: 660px; 
 }
 
 .sticker-img {
@@ -210,8 +215,8 @@ button.hamburger {
 }
 
 .stack-container {
-    grid-column: 5 / span 9;
-    grid-row: 3 / 5;
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -248,7 +253,7 @@ button.hamburger {
 }
 
 .stack-footer {
-    grid-column: 5 / span 9; 
+    grid-column: 2 / 3; 
     grid-row: 4 / 5;         
     display: flex;
     align-items: center;     
@@ -283,9 +288,6 @@ button.hamburger {
 }
 
 #about .stack-footer p {
-    grid-column: auto;
-    grid-row: auto;
-    padding-right: 0;
     font-size: 1.2rem;
     color: #ff83d1;
 }
@@ -295,7 +297,9 @@ button.hamburger {
     align-items: center;
 }
 
-.cv-line h3 { font-size: 2.4rem; }
+.cv-line h3 { 
+    font-size: 2.4rem; 
+}
 
 #cv {
     width: 130px !important; 
@@ -491,38 +495,38 @@ footer {
 
 /* --- TABLETTES (<= 1024px) --- */
 @media screen and (max-width: 1024px) {
+    
+    /* On supprime le mode "colonne" pour hériter du grid de l'ordinateur (côte à côte) */
     #about {
-        display: flex;
-        flex-direction: column; 
+        padding: 2rem 2rem;
         margin: 4rem 0 2rem 0;
-        gap: 2rem;
+        gap: 15px; /* Un peu moins d'espace entre la vidéo et le texte pour que ça rentre */
     }
 
+    /* On laisse la vidéo à sa place à gauche, sans la forcer au centre */
     #moi {
-        width: 100%;
-        max-width: 500px; 
+        width: 70%; /* Prend bien la largeur de sa colonne */
         height: auto;
-        margin: 0 auto; 
-        padding-left: 0;
-        order: -1; 
+        padding-left: 0; 
     }
 
+    /* On ajuste la taille des polices pour que le texte ne déborde pas */
     #about h2 {
-        flex-wrap: nowrap; 
+        flex-wrap: wrap; 
         align-items: center;
-        font-size: clamp(2rem, 5vw, 3rem); 
+        font-size: clamp(1.8rem, 3.5vw, 2.5rem); 
         gap: 5px; 
     }
 
     #about h2 .sticker-img {
-        width: clamp(180px, 30vw, 300px) !important; 
+        width: clamp(120px, 20vw, 180px) !important; 
         transform: translateY(-2px); 
     }
 
     #about p {
         max-width: 100%; 
         padding-right: 0;
-        font-size: 1.1rem;
+        font-size: 0.95rem; /* Légèrement plus petit pour tenir sur la moitié de l'écran */
     }
 
     .stack-container {
@@ -530,7 +534,7 @@ footer {
         margin-top: 0;
     }
 
-    .stack-footer { gap: 15px; }
+    .stack-footer { gap: 10px; }
 
     .cv-wrapper {
         display: flex;
@@ -539,12 +543,12 @@ footer {
     }
 
     .cta-text {
-        font-size: clamp(1.2rem, 4vw, 1.5rem); 
+        font-size: clamp(1rem, 2.5vw, 1.2rem); 
         white-space: nowrap; 
     }
 
     #cv {
-        width: clamp(120px, 20vw, 150px) !important;
+        width: clamp(80px, 15vw, 120px) !important;
         transform: translateY(0);
     }
 
@@ -678,8 +682,18 @@ footer {
     #about {
         padding: 2rem 2rem;
         gap: 1.5rem;
+        /* LE CORRECTIF : On force le mode colonne uniquement sur téléphone */
+        display: flex;
+        flex-direction: column; 
     }
-    #moi { max-width: 350px; }
+    
+    #moi { 
+        width: 100%;
+        max-width: 300px; 
+        margin: 0 auto; /* Centre la vidéo */
+        padding-left: 0;
+        order: -1; /* Assure que la vidéo repasse tout en haut, au-dessus du texte */
+    }
     #about h2 .sticker-img { width: clamp(150px, 45vw, 220px) !important; }
     #about p { font-size: 1rem; }
     
@@ -736,6 +750,4 @@ footer {
         opacity: 1;
         transform: scale(1.1);
     }
-
 }
-
