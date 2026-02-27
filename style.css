@@ -1,0 +1,735 @@
+@font-face {
+    font-family: 'Inclusive';
+    src: url('fonts/InclusiveSans-VariableFont_wght.ttf') format('truetype');
+}
+
+/* =========================================
+   1. RESET ET BASE (Styles globaux)
+========================================= */
+body::-webkit-scrollbar { display: none; }
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #F9F9F9;
+}
+
+body {
+    font-family: 'Inclusive', sans-serif;
+    background-color: rgb(15, 15, 15);
+    padding-top: 80px; 
+}
+
+h2 { font-size: 3rem; }
+h3 { font-size: 1.5rem; }
+a { text-decoration: none; }
+
+section, #cont { scroll-margin-top: 100px; }
+
+/* =========================================
+   2. BARRE DE NAVIGATION & MENU
+========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 70px;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.hamburger {
+    display: block;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+button.hamburger {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #F9F9F9;
+    border-radius: 50px;
+    transition: all 0.4s ease-in-out;
+}
+
+.hamburger.active .bar:nth-child(2) { opacity: 0; }
+.hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* =========================================
+   MENU (ORDINATEUR & TABLETTE - Horizontal)
+========================================= */
+.side-menu {
+    position: absolute;
+    right: 100px; 
+    display: flex;
+    flex-direction: row; 
+    gap: 2.5rem; 
+    list-style-type: none;
+    opacity: 0; 
+    visibility: hidden; 
+    transform: translateX(20px); 
+    transition: all 0.4s ease-in-out;
+}
+
+.side-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.side-menu a {
+    font-size: 1.2rem;
+    display: block;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+.side-menu a span {
+    color: #898989; 
+    transition: color 0.3s ease;
+}
+
+.side-menu a:hover span { color: #F9F9F9; }
+
+/* =========================================
+   3. SECTION ACCUEIL (Hero)
+========================================= */
+#acceuil {
+    width: 100%;
+    height: 120vh;
+    margin-top: -80px;
+    overflow: hidden;
+    background-image: url('photo/accueil.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px; 
+    transform: translateY(-10vh);
+}
+
+.hero-title {
+    font-size: clamp(6rem, 16vw, 15rem); 
+    font-weight: 900;
+    color: #111; 
+    line-height: 0.8; 
+    letter-spacing: 2px;
+}
+
+.forlio-sticker {
+    width: clamp(280px, 50vw, 700px); 
+    height: auto;
+    display: block;
+    position: relative; 
+    z-index: 2; 
+    margin-top: -4vw; 
+}
+
+.hero-subtitle {
+    color: #111;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 5vh; 
+    text-transform: uppercase;
+}
+
+/* =========================================
+   4. SECTION ABOUT
+========================================= */
+#about {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 20px;
+    padding: 2rem 4rem;
+    margin: 8rem 0 4rem 0;
+}
+
+#about h2 {
+    grid-column: 5 / span 9;
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#about p {
+    font-size: 1.05rem;
+    grid-column: 5 / span 9;
+    grid-row: 2 / 3;
+    max-width: 580px; 
+    padding-right: 0; 
+}
+
+#moi {
+    padding-left: 40px;
+    width: 70%;
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 3;
+}
+
+.sticker-img {
+    width: 400px !important;
+    height: auto;
+    display: block;
+    transform: translateY(-10px); 
+    cursor: pointer;
+}
+
+.stack-container {
+    grid-column: 5 / span 9;
+    grid-row: 3 / 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+#skills-logos {
+    list-style: none; 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.stack-item {
+    background-color: #222;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px; 
+    height: 70px; 
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.stack-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+    filter: grayscale(0%); 
+    opacity: 1; 
+}
+
+.stack-footer {
+    grid-column: 5 / span 9; 
+    grid-row: 4 / 5;         
+    display: flex;
+    align-items: center;     
+    gap: 15px;               
+    flex-wrap: wrap;
+}
+
+.stack-footer p {
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+    color: #898989; 
+    max-width: fit-content; 
+}
+
+.cv-wrapper {
+    display: flex;
+    align-items: center;
+    white-space: nowrap; 
+}
+
+.cta-text {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #F9F9F9;
+}
+
+.sticker-cv-mini {
+    width: 120px; 
+    transform: translateY(0px); 
+    margin: 0; 
+}
+
+#about .stack-footer p {
+    grid-column: auto;
+    grid-row: auto;
+    padding-right: 0;
+    font-size: 1.2rem;
+    color: #ff83d1;
+}
+
+.cv-line {
+    display: flex;
+    align-items: center;
+}
+
+.cv-line h3 { font-size: 2.4rem; }
+
+#cv {
+    width: 130px !important; 
+    height: auto;
+    display: block;
+    transform: translateY(0); 
+    transition: transform 0.3s ease;
+}
+
+/* =========================================
+   5. SECTION PROJETS (Scroll Horizontal)
+========================================= */
+#projets {
+    height: 400vh; 
+    position: relative;
+    background-color: #FF83D1;
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh; 
+    width: 100%;
+    overflow: hidden; 
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(2, auto);
+    padding: 0 5rem;
+}
+
+.projets-header {
+    grid-column: 1 / span 9;
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.projets-header h2 {
+    font-size: 4rem;
+    padding-left: 40px;
+}
+
+.horizontal-scroll-track {
+    grid-column: 1 / span 9;
+    grid-row: 2 / 3;
+    display: flex;
+    align-items: flex-start;
+    gap: 6vw; 
+    padding-left: 35vw; 
+    width: max-content; 
+    will-change: transform; 
+}
+
+.projet-item {
+    width: 45vw; 
+    min-width: 650px; 
+    flex-shrink: 0;
+    overflow: hidden; 
+    border-radius: 6px;
+    box-shadow: 10px 10px 40px rgba(0,0,0,0.15); 
+}
+
+.projet-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%);
+    transform: scale(1);
+    transition: filter 0.5s ease, transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.projet-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.06);
+}
+
+/* =========================================
+   6. SECTION CONTACT & FOOTER
+========================================= */
+.contact-section {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 5rem;
+    margin-bottom: 5rem;
+    margin-top: 8rem;
+    text-align: center;
+}
+
+.contact-section span { color: #898989; }
+.contact-section span:hover { color: white; }
+
+#cont {
+    width: 40%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#cont p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #898989;
+}
+#cont p:hover { color: #F9F9F9; }
+
+#img_contact { width: 40%; }
+#img_contact img { width: 80%; }
+address { font-style: normal; }
+
+#cont h2 {
+    font-size: 4rem;
+    display: flex; 
+    align-items: center; 
+    flex-wrap: nowrap; 
+    gap: 10px; 
+}
+
+.sticker-touch {
+    width: 220px !important; 
+    height: auto;
+    display: block;
+    transform: translateY(0); 
+    transition: transform 0.3s ease;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 3rem;
+}
+
+/* =========================================
+   7. ÉLÉMENTS DÉCORATIFS & UI
+========================================= */
+.bordure { width: 100%; }
+.bordure img { width: 100%; display: block; }
+
+#cursor-tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FF83D1;
+    color: #0f0f0f;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transform: translate(-50%, -150%);
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#cursor-tooltip.visible { opacity: 1; }
+
+/* =========================================
+   9. ANIMATIONS D'APPARITION AU SCROLL
+========================================= */
+.hidden-anim {
+    opacity: 0;
+    transform: translateY(40px); 
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hidden-anim.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 150ms; }
+.delay-2 { transition-delay: 300ms; }
+.delay-3 { transition-delay: 450ms; }
+
+/* =========================================
+   8. MEDIA QUERIES (Responsive)
+========================================= */
+@media (hover: none) {
+    .projet-item img {
+        filter: grayscale(0%); 
+        transform: scale(1); 
+    }
+    .projet-item:active img {
+        filter: grayscale(0%);
+        transform: scale(1);
+    }
+}
+
+/* --- TABLETTES (<= 1024px) --- */
+@media screen and (max-width: 1024px) {
+    #about {
+        display: flex;
+        flex-direction: column; 
+        margin: 4rem 0 2rem 0;
+        gap: 2rem;
+    }
+
+    #moi {
+        width: 100%;
+        max-width: 500px; 
+        height: auto;
+        margin: 0 auto; 
+        padding-left: 0;
+        order: -1; 
+    }
+
+    #about h2 {
+        flex-wrap: nowrap; 
+        align-items: center;
+        font-size: clamp(2rem, 5vw, 3rem); 
+        gap: 5px; 
+    }
+
+    #about h2 .sticker-img {
+        width: clamp(180px, 30vw, 300px) !important; 
+        transform: translateY(-2px); 
+    }
+
+    #about p {
+        max-width: 100%; 
+        padding-right: 0;
+        font-size: 1.1rem;
+    }
+
+    .stack-container {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .stack-footer { gap: 15px; }
+
+    .cv-wrapper {
+        display: flex;
+        flex-wrap: nowrap !important; 
+        align-items: center;
+    }
+
+    .cta-text {
+        font-size: clamp(1.2rem, 4vw, 1.5rem); 
+        white-space: nowrap; 
+    }
+
+    #cv {
+        width: clamp(120px, 20vw, 150px) !important;
+        transform: translateY(0);
+    }
+
+    .projets-header { align-items: center; }
+    .projets-header h2 { font-size: clamp(3rem, 6vw, 4rem); }
+    .horizontal-scroll-track { align-items: flex-start; }
+    
+    .contact-section { justify-content: space-between; }
+    #cont { width: 50%; }
+    #cont h2 {
+        font-size: clamp(2.5em, 5vw, 4rem); 
+        gap: 10px;
+    }
+    .sticker-touch { width: clamp(140px, 20vw, 220px) !important; }
+    #img_contact { width: 45%; }
+    #img_contact img {
+        width: 100%; 
+        height: auto;
+    }
+}
+
+/* --- MOBILES (<= 768px) --- */
+@media (max-width: 768px) {
+    .side-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 100%; 
+        background-color: #FF83D1; 
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(100%); 
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 999;
+    }
+
+    .side-menu.active { transform: translateX(0); }
+    .side-menu a {
+        font-size: 1.5rem;
+        padding: 2rem;
+    }
+    .side-menu a span { color: #F9F9F9; }
+
+    #acceuil { height: 100vh; }
+    .hero-content {
+        transform: translateY(0); 
+        padding-top: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .hero-title { font-size: clamp(4rem, 25vw, 6rem); }
+    .forlio-sticker {
+        width: clamp(200px, 80vw, 350px); 
+        margin-top: -3vw; 
+    }
+    .hero-subtitle {
+        font-size: 0.9rem; 
+        margin-top: 3vh; 
+        line-height: 1.5; 
+    }
+
+    #projets {
+        height: auto; 
+        padding: 4rem 0; 
+    }
+    .sticky-wrapper {
+        position: relative; 
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        gap: 3rem;
+    }
+    .projets-header {
+        align-items: flex-start; 
+        padding-left: 2rem; 
+    }
+    .projets-header h2 {
+        font-size: 10vw;
+        padding: 0;
+    }
+.horizontal-scroll-track {
+        flex-direction: row; 
+        transform: none !important; 
+        padding-left: 2rem; 
+        padding-right: 2rem; 
+        padding-bottom: 1.5rem; /* Un peu d'espace en bas pour que la barre ne colle pas aux images */
+        gap: 20px; 
+        align-items: flex-start; 
+        overflow-x: auto; 
+        overflow-y: hidden; 
+        scroll-snap-type: x mandatory; 
+        -webkit-overflow-scrolling: touch; 
+        width: 100%; 
+        
+        /* --- STYLE DE LA BARRE POUR FIREFOX --- */
+        scrollbar-width: thin; /* Barre fine */
+        scrollbar-color: #f9f9f9 rgba(255, 255, 255, 0.1); /* Couleur du curseur rose / fond transparent */
+    }
+
+    /* --- STYLE DE LA BARRE POUR CHROME / SAFARI / iOS --- */
+    .horizontal-scroll-track::-webkit-scrollbar { 
+        display: block; /* On réactive l'affichage */
+        height: 6px; /* Épaisseur de la barre */
+    }
+    
+    .horizontal-scroll-track::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05); /* Un fond de rail très discret */
+        border-radius: 10px;
+    }
+    
+    .horizontal-scroll-track::-webkit-scrollbar-thumb {
+        background-color: #f9f9f9; /* Le curseur en rose ! */
+        border-radius: 10px;
+    }
+    .projet-item {
+        width: 80vw; 
+        min-width: auto; 
+        scroll-snap-align: center; 
+    }
+
+    #about {
+        padding: 2rem 2rem;
+        gap: 1.5rem;
+    }
+    #moi { max-width: 350px; }
+    #about h2 .sticker-img { width: clamp(150px, 45vw, 220px) !important; }
+    #about p { font-size: 1rem; }
+    
+    .stack-item {
+        width: 55px;
+        height: 55px;
+        padding: 10px;
+    }
+    .cta-text { font-size: clamp(1.1rem, 5vw, 1.3rem); }
+    #cv { width: clamp(100px, 30vw, 120px) !important; }
+    .cv-wrapper { gap: 0px; }
+
+    .contact-section {
+        flex-direction: column; 
+        padding: 2rem 3rem;
+        gap: 4rem; 
+        margin-top: 4rem;
+    }
+    #cont {
+        width: 100%; 
+        align-items: flex-start; 
+        gap: 3vh;
+    }
+    #cont h2 {
+        gap: 8px;
+        font-size: 10vw;
+    }
+    .sticker-touch { width: clamp(100px, 25vw, 140px) !important; }
+    address { margin-top: 1rem; }
+    #cont p { font-size: 1rem; }
+    
+    #img_contact {
+        width: 100%;
+        max-width: 350px; 
+        margin: 0 auto; 
+    }
+    #img_contact img { width: 100%; }
+    footer p { font-size: 0.9rem; }
+}
+
+/* --- UNIQUEMENT POUR LES ÉCRANS AVEC SOURIS (Desktop) --- */
+@media (hover: hover) {
+    .stack-item img {
+        filter: grayscale(100%); 
+        opacity: 0.7;            
+    }
+    .stack-item:hover {
+        transform: translateY(-5px);
+        background-color: #333;
+        cursor: pointer;
+    }
+    .stack-item:hover img {
+        filter: grayscale(0%);   
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
