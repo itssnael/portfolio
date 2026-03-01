@@ -59,28 +59,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================================
-    // 4. SCROLL HORIZONTAL (SECTION PROJETS - ACCUEIL)
+    // 4. SCROLL HORIZONTAL (SECTION PROJETS - ACCUEIL) - OPTIMISÉ
     // ============================================================
     const stickySection = document.querySelector('#projets');
     const scrollTrack = document.querySelector('.horizontal-scroll-track');
 
     if (stickySection && scrollTrack) {
+        let isTicking = false; // Notre verrou pour éviter les embouteillages
+
         window.addEventListener('scroll', () => {
             // Si sur mobile (écran petit), on ne fait rien (géré par le CSS Scroll Snap)
             if (window.innerWidth > 768) {
-                const offsetTop = stickySection.offsetTop;
-                const scrollY = window.scrollY;
-                const windowHeight = window.innerHeight;
-                const sectionHeight = stickySection.offsetHeight;
-
-                let percentage = (scrollY - offsetTop) / (sectionHeight - windowHeight);
-                percentage = Math.max(0, Math.min(1, percentage));
-
-                const trackWidth = scrollTrack.scrollWidth;
-                const viewportWidth = window.innerWidth;
-                const moveDistance = (trackWidth - viewportWidth + 300) * percentage;
                 
-                scrollTrack.style.transform = `translateX(-${moveDistance}px)`;
+                // Si le navigateur n'est pas déjà en train de calculer une image...
+                if (!isTicking) {
+                    window.requestAnimationFrame(() => {
+                        const offsetTop = stickySection.offsetTop;
+                        const scrollY = window.scrollY;
+                        const windowHeight = window.innerHeight;
+                        const sectionHeight = stickySection.offsetHeight;
+
+                        let percentage = (scrollY - offsetTop) / (sectionHeight - windowHeight);
+                        percentage = Math.max(0, Math.min(1, percentage));
+
+                        const trackWidth = scrollTrack.scrollWidth;
+                        const viewportWidth = window.innerWidth;
+                        const moveDistance = (trackWidth - viewportWidth + 300) * percentage;
+                        
+                        // translate3d force l'utilisation de la carte graphique (GPU)
+                        scrollTrack.style.transform = `translate3d(-${moveDistance}px, 0, 0)`;
+                        
+                        // On libère le verrou une fois le dessin terminé
+                        isTicking = false;
+                    });
+                    
+                    isTicking = true; // On verrouille jusqu'à la prochaine image
+                }
             }
         });
     }
