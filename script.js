@@ -134,31 +134,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ============================================================
-    // 7. BULLE CURSEUR LOGOS (COMPÉTENCES)
+    // 7. BULLE CURSEUR LOGOS (COMPÉTENCES) - SOURIS & TACTILE
     // ============================================================
     const tooltip = document.getElementById('cursor-tooltip');
     const stackItems = document.querySelectorAll('.stack-item');
 
-    // On ajoute la condition "hover: hover" ici aussi
-    if (tooltip && stackItems.length > 0 && window.matchMedia("(hover: hover)").matches) {
-        stackItems.forEach(item => {
-            item.addEventListener('mousemove', (e) => {
-                tooltip.style.left = e.clientX + 'px';
-                tooltip.style.top = (e.clientY - 10) + 'px'; 
+    if (tooltip && stackItems.length > 0) {
+        
+        // --- 1. COMPORTEMENT ORDINATEUR (Vraie souris) ---
+        if (window.matchMedia("(hover: hover)").matches) {
+            stackItems.forEach(item => {
+                item.addEventListener('mousemove', (e) => {
+                    tooltip.style.left = e.clientX + 'px';
+                    tooltip.style.top = (e.clientY - 10) + 'px'; 
+                });
+
+                item.addEventListener('mouseenter', () => {
+                    const softwareName = item.getAttribute('data-name');
+                    if(softwareName) {
+                        tooltip.textContent = softwareName; 
+                        tooltip.classList.add('visible'); 
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    tooltip.classList.remove('visible');
+                });
+            });
+        } 
+        
+        // --- 2. COMPORTEMENT TACTILE (Mobiles et Tablettes) ---
+        else {
+            stackItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    // Empêche le clic de se propager au document entier 
+                    // (sinon le code de fermeture juste en dessous se déclencherait instantanément)
+                    e.stopPropagation();
+
+                    const softwareName = item.getAttribute('data-name');
+                    if(softwareName) {
+                        // Récupère la position exacte du logo touché à l'écran
+                        const rect = item.getBoundingClientRect();
+                        
+                        tooltip.textContent = softwareName; 
+                        
+                        // Place la bulle au-dessus et au centre du logo
+                        tooltip.style.left = rect.left + (rect.width / 2) + 'px';
+                        tooltip.style.top = rect.top - 15 + 'px';
+                        
+                        tooltip.classList.add('visible');
+                    }
+                });
             });
 
-            item.addEventListener('mouseenter', () => {
-                const softwareName = item.getAttribute('data-name');
-                if(softwareName) {
-                    tooltip.textContent = softwareName; 
-                    tooltip.classList.add('visible'); 
-                }
-            });
-
-            item.addEventListener('mouseleave', () => {
+            // Fermer la bulle si on touche n'importe où ailleurs sur la page
+            document.addEventListener('click', () => {
                 tooltip.classList.remove('visible');
             });
-        });
+            
+            // Fermer la bulle dès que l'utilisateur fait défiler la page (pour éviter qu'elle ne flotte dans le vide)
+            window.addEventListener('scroll', () => {
+                tooltip.classList.remove('visible');
+            });
+        }
     }
 
     // ============================================================
