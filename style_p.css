@@ -63,8 +63,16 @@ a { text-decoration: none; }
 }
 
 .brand-name {
-    font-size: 1.5rem;
-    font-weight: bold;
+    /* On s'assure que le conteneur centre parfaitement l'image */
+    display: flex;
+    align-items: center; 
+}
+
+/* --- LA NOUVELLE LIGNE POUR TON ÉTOILE --- */
+.brand-name img {
+    height: 35px; /* Modifie ce chiffre pour régler la taille exacte de l'étoile */
+    width: auto;
+    display: block; /* Enlève la petite marge invisible sous les images */
 }
 
 .hamburger {
